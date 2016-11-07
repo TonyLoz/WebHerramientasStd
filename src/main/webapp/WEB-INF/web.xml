@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+version="3.0">
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/spring/conf-context.xml,
+            /WEB-INF/spring/dao-context.xml,
+            /WEB-INF/spring/service-context.xml
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>appTitle</param-name>
+        <param-value>WebHerramientasStd</param-value>
+    </context-param>
+    <context-param>
+        <param-name>appVersion</param-name>
+        <param-value>1.0.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>rutaComunesProperties</param-name>
+        <param-value>/Aplicaciones/comunes/comunes.properties</param-value>
+    </context-param>
+    
+    <!--OPCIONAL-->
+    <context-param>
+	<param-name>propertiesFile</param-name>
+	<param-value>/Aplicaciones/WebHerramientasStd/WebHerramientasStd.properties</param-value>
+    </context-param>    
+    
+    <!--context-param>
+	<param-name>internalPropertiesFile</param-name>
+	<param-value>WebHerramientasStd-extra.properties</param-value>
+    </context-param-->    
+    
+    <filter>
+        <filter-name>adminToolsFilter</filter-name>
+        <filter-class>com.santander.tools.admintools.filter.AdminToolsFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>sessionFilter</filter-name>
+        <filter-class>com.santander.tools.mvc.filter.SesionFilter</filter-class>
+    </filter>
+	<filter-mapping>
+        <filter-name>sessionFilter</filter-name>
+        <url-pattern>*.htm</url-pattern>
+        <url-pattern>*.json</url-pattern>
+    </filter-mapping>    
+    <filter-mapping>
+        <filter-name>adminToolsFilter</filter-name>
+        <url-pattern>*.cfg</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- listener>
+        <description>ServletContextListener</description>
+        <listener-class>com.santander.tools.properties.ComunesListener</listener-class>
+    </listener-->
+    
+    <!--OPCIONAL-->
+    <listener>
+            <description>PropertiesLoader</description>
+            <listener-class>com.santander.tools.properties.PropertiesLoader</listener-class>
+    </listener>
+    
+    
+    <servlet>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/mvc-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+        <url-pattern>*.json</url-pattern>
+        <url-pattern>*.cfg</url-pattern>
+        <url-pattern>/restfiles/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

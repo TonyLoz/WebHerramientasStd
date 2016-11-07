@@ -1,0 +1,66 @@
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    min-width: 100%;
+    min-height: 100%;
+}
+body {
+    #background-color: #eee;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.form-signin {
+    max-width: 350px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    padding-top: 100px;
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="text"] {
+    margin-top: 10px;
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.container-centering{
+    height:80%;
+    display: table;
+    width: 100%;
+    padding: 0;
+}
+.row-centering {
+    height: 100%; 
+    display: table-cell; 
+    vertical-align: middle;
+}
+.centering {
+    float: none;
+    margin: 0 auto;
+    width: 400px;
+}

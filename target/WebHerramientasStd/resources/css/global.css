@@ -1,0 +1,46 @@
+.template{
+    display: none;
+}
+.clear{
+    clear: both;
+    min-height: 1px;
+}
+.centrar{
+    margin: auto;
+}
+#contenedorAreaTrabajo{
+    
+}
+#mensajeGlobal{
+    margin: auto;
+    width: 640px;
+}
+.contenedorForm{
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    border: 1px solid #d7d7d7;
+    padding: 10px;
+}
+div.panel-heading{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /*font-size: .9em;*/
+}
+.oculto{
+    display: none;
+}
+div.separador{
+    border-top: 1px solid #e5e5e5;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.infoRegistros{
+    color: #2C9FA1;
+}
+div.contenedorPaginador ul{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+h2.titulo{
+    margin-top: 10px;
+}

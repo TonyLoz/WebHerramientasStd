@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<mvc:annotation-driven />
+
+	<context:component-scan
+		base-package="com.santander.tools.appstatus.controller, 
+        com.santander.tools.admintools.controller, com.santander.tools.mvc.controller" />
+
+	<bean id="contentNegotiationManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="true" />
+		<property name="ignoreAcceptHeader" value="true" />
+		<property name="useJaf" value="false" />
+		<property name="defaultContentType" value="application/json" />
+
+		<property name="mediaTypes">
+			<map>
+				<entry key="htm" value="text/html" />
+				<entry key="json" value="application/json" />
+				<entry key="cfg" value="text/html" />
+			</map>
+		</property>
+	</bean>
+
+
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="contentNegotiationManager" ref="contentNegotiationManager" />
+		<property name="viewResolvers">
+
+			<list>
+				<ref bean="tilesViewResolver" />
+				<ref bean="internalViewResolver" />
+			</list>
+
+		</property>
+
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
+		<property name="order" value="0" />
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
+		id="tilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/templates.xml</value>
+				<value>/WEB-INF/tiles/views.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="internalViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
+	</bean>
+
+    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+
+</beans>

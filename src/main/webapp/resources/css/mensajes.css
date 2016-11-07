@@ -1,0 +1,48 @@
+.notifications-fixed {
+    position: fixed;
+}
+.notifications-inline {
+    position: relative;
+}
+/* Positioning */ 
+.notifications-fixed.top-right {
+    right: 10px;
+    top: 25px;
+}
+.notifications-fixed.top-left {
+    left: 10px;
+    top: 25px;
+}
+.notifications-fixed.bottom-left {
+    left: 10px;
+    bottom: 25px;
+}
+.notifications-fixed.bottom-right {
+    right: 10px;
+    bottom: 25px;
+}
+/* Notification Element */
+.notifications-fixed > div {
+    position: relative;
+    z-index: 9999;
+    margin: 5px 0px;
+}
+.notifications-fixed div.alert{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 5px;
+}
+.notifications-fixed div.alert a.close{
+    /*padding-right: 4px;*/
+    padding-left: 5px;
+}
+.notifications-inline > div {
+    position: relative;
+    z-index: 9999;
+    margin: 5px 0px;
+}
+.notifications-inline div.alert{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 5px;
+}

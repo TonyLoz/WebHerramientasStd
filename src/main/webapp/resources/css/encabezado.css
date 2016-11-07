@@ -1,0 +1,19 @@
+#logoAplicacion {
+    height: 16px;
+    width: 16px;
+}
+div.navbar{
+    margin-bottom: 10px;
+}
+.navbarCargando{
+    color: #82FA58 !important;
+}
+i.navbarCargando{
+    margin: 2px 8px 0px 0px;
+}
+#divAdmonUsuarios{
+    display: none;
+}
+#divAdmonReglas{
+    display: none;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+    <definition name="home" extends="template" >
+        <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/home.jsp" />
+    </definition>
+
+     <definition name="autenticacion" template="/WEB-INF/jsp/webApp/autenticacion.jsp">
+    </definition>
+
+    <definition name="usuarios" extends="template" >
+        <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/usuarios.jsp" />
+    </definition>
+    
+    <definition name="perfiles" extends="template" >
+        <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/perfiles.jsp" />
+    </definition>  
+
+    <definition name="bitacora" extends="template" >
+        <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/bitacora.jsp" />
+    </definition>  
+    
+    <definition name="certificadores" extends="template" >
+        <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/certificadores.jsp" />
+    </definition>  
+ 
+    <definition name="foliador" extends="template" >
+        <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/foliador.jsp" />
+    </definition>   
+    
+    <definition name="archivos" extends="template" >
+        <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/archivos.jsp" />
+    </definition>          
+    
+
+</tiles-definitions>
