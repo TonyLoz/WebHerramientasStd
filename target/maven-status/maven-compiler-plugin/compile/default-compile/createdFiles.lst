@@ -24,6 +24,7 @@ com\santander\tools\dao\BitacoraDaoImpl.class
 com\santander\commons\exceptions\FileExistException.class
 com\santander\tools\bean\UsuarioApBean.class
 com\santander\tools\dao\PermisoDaoImpl$PermisoMapper.class
+com\santander\tools\service\BitacoraServiceImpl.class
 com\santander\tools\dao\UsuarioDaoImpl.class
 com\santander\commons\exceptions\WSException.class
 com\santander\tools\admintools\tailLog\Tailer.class
@@ -59,6 +60,7 @@ com\santander\tools\service\PerfilServiceImpl.class
 com\santander\tools\appstatus\service\ApplicationStatusServiceImpl.class
 com\santander\tools\service\UsuarioServiceImpl.class
 com\santander\tools\properties\ComunesListener.class
+com\santander\tools\service\BitacoraService.class
 com\santander\tools\mvc\filter\SesionFilter.class
 com\santander\tools\bean\PermisoBean.class
 com\santander\tools\bean\UsuarioBean.class

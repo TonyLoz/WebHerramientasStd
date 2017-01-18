@@ -4,6 +4,7 @@ C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\admintools
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\bean\MenuBean.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\mvc\controller\UsuariosController.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\mvc\controller\BaseMultiActionController.java
+C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\service\BitacoraServiceImpl.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\mvc\controller\FoliadorController.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\dao\PerfilDaoImpl.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\appstatus\bean\ApplicationStatusBean.java
@@ -14,6 +15,7 @@ C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\commons\exceptio
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\commons\exceptions\DAOException.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\mvc\controller\BitacoraController.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\appstatus\service\ApplicationStatusServiceImpl.java
+C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\service\BitacoraService.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\dao\PermisoDaoImpl.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\utils\PasswordGenerator.java
 C:\PROJECTS\WECL\WebHerramientasStd\src\main\java\com\santander\tools\service\UsuarioServiceImpl.java
