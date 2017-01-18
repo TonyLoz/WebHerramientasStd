@@ -147,7 +147,7 @@ section#progress  {padding-top: 100px; padding-bottom: 68px;}
 section#portfolio {padding: 86px 0 0; border-bottom: 0;}
 section#belowcontent {padding: 49px 0 50px;}
 section#info  {padding-top: 82px; padding-bottom: 88px;}
-section#middle  {padding-top: 89px; padding-bottom: 89px;}
+section#middle  {padding-top: 32px; padding-bottom: 89px;}
 section#middle .row + .row {margin-top: 40px;}
 footer#footer {padding-top: 50px; padding-bottom: 40px; }
 section#map_wrap {padding: 0;}
@@ -204,9 +204,9 @@ section#abovecontent {padding: 30px 0;}
     
     overflow: hidden;    
 }
-#testimonials {background-image: url(../img/parallax/slogan.jpg);}
+/*#testimonials {background-image: url(../img/parallax/slogan.jpg);}
 #progress {background-image: url(../img/parallax/progress.jpg);}
-
+*/
 
 /*main*/
 html, body {/*position: relative; width: 100%; height: 100%;*/}

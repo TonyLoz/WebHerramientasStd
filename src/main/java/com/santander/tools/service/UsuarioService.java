@@ -8,6 +8,8 @@ package com.santander.tools.service;
 
 
 
+import java.util.List;
+
 import com.santander.commons.exceptions.ServiceException;
 import com.santander.tools.bean.UsuarioBean;
 
@@ -22,4 +24,5 @@ public interface UsuarioService {
     
 	public UsuarioBean getUsuario(String email) throws ServiceException;
 	public void registrarUsuario(UsuarioBean usuario) throws ServiceException;
+	public List<UsuarioBean> getUsuarios() throws ServiceException;
 }

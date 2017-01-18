@@ -25,7 +25,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 import com.santander.commons.exceptions.DAOException;
 import com.santander.commons.exceptions.FormatException;
-
+import com.santander.tools.bean.PerfilBean;
 import com.santander.tools.bean.UsuarioBean;
 
 /**
@@ -37,14 +37,17 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	private static final Logger LOGGER = Logger.getLogger("defaultLogger");
 
-	private static final String QUERY_USUARIO = "SELECT NOMBRE," + "PASSWORD," + "EMAIL," + "ID_PERFIL" + " FROM tb_usuario "
-			+ " WHERE EMAIL = :email";
+	private static final String QUERY_USUARIO = "SELECT u.NOMBRE," + "u.PASSWORD," + "u.EMAIL," + "u.ID_PERFIL, " + "p.PERFIL FROM tb_usuario u, tb_perfil p WHERE p.ID_PERFIL=u.ID_PERFIL "
+			+ " AND EMAIL = :email";
+	
+	private static final String QUERY_USUARIOS = "SELECT u.NOMBRE," + "u.PASSWORD," + "u.EMAIL," + "u.ID_PERFIL," + "p.PERFIL FROM tb_usuario u, tb_perfil p WHERE p.ID_PERFIL=u.ID_PERFIL "
+			+ " ORDER BY NOMBRE";
 	
 	  private static final String INSERTAR_USUARIO
       = "INSERT INTO tb_usuario "
-      + "(NOMBRE,CORREO,IDPERFIL,INTENTO) "
+      + "(NOMBRE,EMAIL,ID_PERFIL,INTENTO,PASSWORD) "
       + " VALUES "
-      + "(:nombre,:correo,:perfil,:intento)";	
+      + "(:nombre,:correo,:perfil,:intento,:password)";	
 
     @Value("${password.default}")
     private String defaultPassword;
@@ -68,6 +71,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			usuario.setCorreo(rs.getString(3));
 
 			usuario.setIdPerfil(rs.getInt(4));
+			
+			PerfilBean perfil = new PerfilBean();
+			perfil.setId(rs.getInt(4));
+			perfil.setNombre(rs.getString(5));
+			
+			usuario.setIdPerfil(rs.getInt(4));
+			usuario.setPerfil(perfil);
 			return usuario;
 		}
 	}
@@ -131,11 +141,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		List<UsuarioBean> lista = new ArrayList<UsuarioBean>();
 		try {
 
-			LOGGER.debug("Ejecutando query: " + QUERY_USUARIO);
+			LOGGER.debug("Ejecutando query: " + QUERY_USUARIOS);
 
-			lista = this.jdbcTemplate.query(QUERY_USUARIO, parametros, new UsuarioMapper());
+			lista = this.jdbcTemplate.query(QUERY_USUARIOS, parametros, new UsuarioMapper());
 
-			if (lista != null) {
+			if (lista == null) {
 				lista = new ArrayList<UsuarioBean>();
 			}			
 
@@ -153,7 +163,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
         //Insertamos el registro en caso de que no exista
         MapSqlParameterSource bindValues = new MapSqlParameterSource();
-
+        
         agregarParametros(Usuario, bindValues);
 
         KeyHolder keyHolder = new GeneratedKeyHolder();

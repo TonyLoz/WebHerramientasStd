@@ -19,10 +19,10 @@ version="3.0">
         <param-name>appVersion</param-name>
         <param-value>1.0.0</param-value>
     </context-param>
-    <context-param>
+    <!--context-param>
         <param-name>rutaComunesProperties</param-name>
         <param-value>/Aplicaciones/comunes/comunes.properties</param-value>
-    </context-param>
+    </context-param-->
     
     <!--OPCIONAL-->
     <context-param>

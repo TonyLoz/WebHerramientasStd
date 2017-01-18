@@ -27,9 +27,9 @@
 
 
 					<div class="list-group block">
-						<a href="#" class="list-group-item">Alta de usuarios</a> <a
-							href="#" class="list-group-item">Actualizacion</a> <a href="#"
-							class="list-group-item">Borrar</a>
+						<a href="#" onclick="mostrarPanelAlta();return false;" class="list-group-item">Alta de Usuarios</a> 
+						<a href="#" onclick="mostrarPanelAdmin();return false;" class="list-group-item">Administración</a> 
+
 					</div>
 
 				</aside>
@@ -39,41 +39,59 @@
 					<div class="content-area" id="primary">
 						<div role="main" class="site-content" id="content">
 
-							<div class="row">
-								<div class="col-sm-12 text-center">
-									<h2 class="block-header">Alta de Usuarios</h2>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="contact-form">
-										<form class="contact-form" method="post" action="/">
-											<p class="contact-form-name">
-												<label for="name">Nombre <span class="required">*</span></label>
-												<input type="text" aria-required="true" size="30" value=""
-													name="name" id="name" class="form-control"
-													placeholder="Nombre">
-											</p>
-											<p class="contact-form-email">
-												<label for="email">Correo <span class="required">*</span></label>
-												<input type="email" aria-required="true" size="30" value=""
-													name="email" id="email" class="form-control"
-													placeholder="Correo electronico">
-											</p>
-											<p class="contact-form-perfil">
-												<label for="ltPerfil">Perfil <span class="required">*</span></label>
-												<select class="form-control" aria-required="true
-													name="ltPerfil" id="ltPerfil">
-												</select> 
-											</p>
-											<p class="contact-form-submit text-center vertical-margin-60">
-												<input type="submit" value="Guardar" id="user_form_submit"
-													name="contact_submit" class="theme_btn">
-											</p>
-										</form>
+
+							<div id="panel-usuarios-alta">
+								<div class="row">
+									<div class="col-sm-12 text-center">
+										<h2 class="block-header">Alta de Usuarios</h2>
 									</div>
 								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="contact-form">
+											<form id="nuevo-usuario-form" class="contact-form" data-toggle="validator">
+												<p class="contact-form-name">
+													<label for="name">Nombre <span class="required">*</span></label>
+													<input type="text" aria-required="true" size="30" value=""
+														name="name" id="name" class="form-control"
+														placeholder="Nombre">
+												</p>
+												<p class="contact-form-email">
+													<label for="email">Correo <span class="required">*</span></label>
+													<input type="email" aria-required="true" size="30" value=""
+														name="email" id="email" class="form-control"
+														placeholder="Correo electronico">
+												</p>
+												<p class="contact-form-perfil">
+													<label for="ltPerfil">Perfil <span class="required">*</span></label>
+													<select class="form-control"
+														aria-required="true" name="ltPerfil" id="ltPerfil">
+													</select>
+												</p>
+												<p
+													class="contact-form-submit text-center vertical-margin-60">
+													<input type="button" value="Guardar" id="btnGuardar"
+														name="btnGuardar" class="theme_btn">
+												</p>
+											</form>
+										</div>
+									</div>
 
+								</div>
+
+							</div>
+
+							<div id="panel-usuarios-admin" style="display: none;">
+								<table id="table-usuarios" class="display table table-striped table-hover table-condensed" >
+									<thead>
+										<tr>
+											<th>Nombre</th>
+											<th>Correo</th>
+											<th>Perfil</th>
+											<th></th>
+										</tr>
+									</thead>
+								</table>
 							</div>
 
 
@@ -94,7 +112,9 @@
 
 				<div class="col-sm-6">
 					<p>
-						&copy; Copyright 2016.<a href="#" target="_blank">Santander</a>
+						&copy; Copyright 2016.<a href="#" target="_blank"><img
+							src="${pageContext.request.contextPath}/resources/img/flama.png"
+							style="width: 22px;" border="0">Santander</a>
 					</p>
 				</div>
 

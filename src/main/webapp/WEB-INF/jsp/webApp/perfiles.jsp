@@ -27,9 +27,9 @@
 
 
 					<div class="list-group block">
-						<a href="#" class="list-group-item">Alta de perfiles</a> <a
-							href="#" class="list-group-item">Actualizacion</a> <a href="#"
-							class="list-group-item">Borrar</a>
+						<a href="#" onclick="mostrarPanelAlta();return false;" class="list-group-item">Alta de Perfiles</a> 
+						<a href="#" onclick="mostrarPanelAdmin();return false;" class="list-group-item">Administración</a> 
+						<a href="#" class="list-group-item">Borrar</a>
 					</div>
 
 				</aside>
@@ -39,17 +39,30 @@
 					<div class="content-area" id="primary">
 						<div role="main" class="site-content" id="content">
 
-							<div class="row">
-								<div class="col-sm-12 text-center">
-									<h2 class="block-header">Alta de Perfiles</h2>
+
+							<div id="panel-perfiles-alta">
+								<div class="row">
+									<div class="col-sm-12 text-center">
+										<h2 class="block-header">Alta de Perfiles</h2>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12"></div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-sm-12">
+
+							<div id="panel-perfiles-admin" style="display: none;">
+								<div class="row">
+									<div class="col-sm-12 text-center">
+										<h2 class="block-header">Administración de Perfiles</h2>
+									</div>
 								</div>
-
-
+								<div class="row">
+									<div class="col-sm-12"></div>
+								</div>
 							</div>
+
+
 
 
 						</div>
@@ -69,7 +82,9 @@
 
 				<div class="col-sm-6">
 					<p>
-						&copy; Copyright 2016.<a href="#" target="_blank"><img src="${pageContext.request.contextPath}/resources/img/flama.png" style="width: 22px;" border="0">Santander</a>
+						&copy; Copyright 2016.<a href="#" target="_blank"><img
+							src="${pageContext.request.contextPath}/resources/img/flama.png"
+							style="width: 22px;" border="0">Santander</a>
 					</p>
 				</div>
 

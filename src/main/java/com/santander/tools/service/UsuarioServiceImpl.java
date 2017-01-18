@@ -6,6 +6,8 @@
 package com.santander.tools.service;
 
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.santander.commons.exceptions.DAOException;
 import com.santander.commons.exceptions.ServiceException;
+import com.santander.tools.bean.PerfilBean;
 import com.santander.tools.bean.UsuarioBean;
 import com.santander.tools.dao.UsuarioDao;
 
@@ -30,7 +33,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	private UsuarioDao usuarioDao;
 
-
+	@Autowired
+	private PerfilService perfilService;
 	
 	@Override
 	public UsuarioBean getUsuario(String email) throws ServiceException{
@@ -68,5 +72,28 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     }	
 	
-
+	@Override
+	public List<UsuarioBean> getUsuarios() throws ServiceException{
+		
+		List<UsuarioBean> ls;
+		try {
+			ls  = usuarioDao.getUsuarios();
+			
+			/*for(int i=0; i< ls.size(); i++){
+				
+				PerfilBean perfil = perfilService.getPerfil(ls.get(i).getIdPerfil());
+				ls.get(i).setPerfil(perfil);
+			}*/
+			
+			
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			log.equals(e.getMessage());
+			throw new ServiceException(e.getMessage());
+		}
+		return ls;
+		
+	}	
+	
+	
 }

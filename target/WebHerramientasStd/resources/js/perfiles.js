@@ -5,7 +5,14 @@ $(document).ready(function () {
 
 
 
-
+function mostrarPanelAlta(){
+	$("panel-perfiles-alta").show();
+	$("panel-perfiles-admin").hide();
+}
+function mostrarPanelAdmin(){
+	$("panel-perfiles-alta").hide();
+	$("panel-perfiles-admin").show();	
+}
 
 
 function altaUsuario() {

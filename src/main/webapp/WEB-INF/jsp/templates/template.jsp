@@ -15,25 +15,22 @@
         <link href="${pageContext.request.contextPath}/resources/libs/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/resources/css/mensajes.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">      
-        <link href="${pageContext.request.contextPath}/resources/css/autenticacion.css" rel="stylesheet">
+        <!--link href="${pageContext.request.contextPath}/resources/css/autenticacion.css" rel="stylesheet"-->
    		<link href="${pageContext.request.contextPath}/resources/css/loading.css" rel="stylesheet"  /><!-- Loading -->
-   		
    		<link href="${pageContext.request.contextPath}/resources/libs/bootstrap-select-1.11.2/css/bootstrap-select.min.css" rel="stylesheet" >
    		<link href="${pageContext.request.contextPath}/resources/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" >
    		<link href="${pageContext.request.contextPath}/resources/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
    		<link href="${pageContext.request.contextPath}/resources/libs/bootstrap-fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-   		
+		<link href="${pageContext.request.contextPath}/resources/libs/datatables-1.10.12/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" >
         <link href="${pageContext.request.contextPath}/resources/libs/handsontable/handsontable.full.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/resources/libs/handsontable/plugins/bootstrap/handsontable.bootstrap.css" rel="stylesheet">   		
-         
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/modernizr-2.6.2.min.js"></script>        
+
         <!--script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/jquery-3.1.1.min.js"></script-->
         <!-- script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/jquery-1.10.2.min.js"></script-->
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/jquery-2.2.4.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootstrap-notify/bootstrap-notify.min.js"></script>
-        
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/modernizr-2.6.2.min.js"></script>        
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootstrap-th/js/bootstrap.min.js"></script>        
-        
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootstrap-notify/bootstrap-notify.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/respond.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/placeholdem.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/hoverIntent.js"></script>
@@ -59,6 +56,10 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/handsontable/handsontable.full.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/datatables-1.10.12/media/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/datatables-1.10.12/DataTableLanguage.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/datatables-1.10.12/media/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/validator/validator.min.js"></script>
 
  		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootstrap-fileinput/js/fileinput.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootstrap-fileinput/js/locales/es.js"></script>

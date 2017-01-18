@@ -59,10 +59,10 @@ public class AutenticacionController {
 	public String autenticar(HttpServletRequest request, Map<String, Object> model) {
 		LOG.info("Atendiendo peticion de autenticacion");
 		HttpSession sesion = request.getSession(true);
-		String usuarioParam = request.getParameter("usuario");
+		String correo = request.getParameter("usuario");
 		String contrasenaParam = request.getParameter("contrasena");
-		LOG.info("Autenticando al usuario " + usuarioParam);
-		if (StringUtils.isEmpty(usuarioParam) || StringUtils.isEmpty(contrasenaParam)) {
+		LOG.info("Autenticando al usuario " + correo);
+		if (StringUtils.isEmpty(correo) || StringUtils.isEmpty(contrasenaParam)) {
 			LOG.info("No se ha especificado el usuario o la contraseña");
 			model.put("mensajeError", "No se ha especificado el Usuario o la Contrase&ntilde;a");
 			return "autenticacion";
@@ -71,8 +71,8 @@ public class AutenticacionController {
 		String nav = "redirect:/home.htm";
 		try {
 
-			UsuarioBean usuarioAutenticado = usuarioService.getUsuario(usuarioParam);
-			if (usuarioParam.equals(usuarioAutenticado.getCorreo())
+			UsuarioBean usuarioAutenticado = usuarioService.getUsuario(correo);
+			if (correo.equals(usuarioAutenticado.getCorreo())
 					&& contrasenaParam.equals(usuarioAutenticado.getContrasena())) {
 
 				PerfilBean perfil = perfilService.getPerfil(usuarioAutenticado.getIdPerfil());

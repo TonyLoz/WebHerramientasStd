@@ -26,9 +26,13 @@
     <definition name="certificadores" extends="template" >
         <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/certificadores.jsp" />
     </definition>  
-    
+ 
     <definition name="foliador" extends="template" >
         <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/foliador.jsp" />
+    </definition>   
+    
+    <definition name="archivos" extends="template" >
+        <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/archivos.jsp" />
     </definition>          
     
 

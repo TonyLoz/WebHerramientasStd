@@ -136,6 +136,12 @@ var Mensajes = {
     mensajeError: function(text, optParam) {
         this.mostrarMensaje("danger", text, optParam);
     },
+    mensajeCargando: function(text, optParam) {
+    	var spin ='<i class="fa fa-spinner fa-spin fa-lg"></i>'+
+        			'<span>'+text+'</span>';
+    	
+        this.mostrarMensaje("info", spin, optParam);
+    },    
     borrarMensajes: function(optParam) {
         var localOpts = this.opt;
         var localElem = this.elem;
