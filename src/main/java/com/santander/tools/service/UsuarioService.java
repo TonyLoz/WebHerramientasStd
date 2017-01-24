@@ -24,5 +24,7 @@ public interface UsuarioService {
     
 	public UsuarioBean getUsuario(String email) throws ServiceException;
 	public void registrarUsuario(UsuarioBean usuario) throws ServiceException;
+	public void borrarUsuario(UsuarioBean usuario) throws ServiceException;
+	public void actualizarUsuario(UsuarioBean usuario) throws ServiceException;
 	public List<UsuarioBean> getUsuarios() throws ServiceException;
 }

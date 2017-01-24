@@ -69,6 +69,9 @@ public class UsuariosController extends BaseMultiActionController {
             
             usuarioService.registrarUsuario(usuarioNuevo);
 
+            respuesta.setEstatus("ok");
+            respuesta.setMensaje("Se agrego correctamente el usuario");
+            
   
         } catch (ServiceException se) {
         	LOG.error("Error al guardar usuario: " + se.getMessage() + " " + se.toString());
@@ -107,13 +110,98 @@ public class UsuariosController extends BaseMultiActionController {
             respuesta.setEstatus("ok");
 
         } catch (ServiceException se) {
-        	LOG.error("Error al obtener Perfiles: " + se.getMessage() + " " + se.toString());
+        	LOG.error("Error al obtener usuarios: " + se.getMessage() + " " + se.toString());
             respuesta.setEstatus("error");
             respuesta.setMensaje(se.getMessage());
         }
 
         return respuesta;
 
-    }	    
+    }
+	
+	
+    @RequestMapping(value = "/actualizarUsuario.json", method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody
+    RespuestaJsonBean actualizarUsuario(final HttpServletRequest request, final Map<String, Object> model) {
+    	LOG.info("Controller para actualizar usuario");
+        RespuestaJsonBean respuesta = new RespuestaJsonBean();
+
+        try {
+
+            JSONObject jsonObj = requestParamsToJSON(request);
+
+            //UsuarioBean usuario = (UsuarioBean) request.getSession(false).getAttribute("usuario");
+
+            String usuario = jsonObj.getString("nombre");
+            String correo = jsonObj.getString("correo");
+            String idUsuario = jsonObj.getString("idUsuario");
+            int idusr=0;
+            if(idUsuario != null){
+            	idusr = Integer.parseInt(idUsuario);
+            }
+            
+            UsuarioBean usuarioNuevo = new UsuarioBean();
+            usuarioNuevo.setNombre(usuario);
+            usuarioNuevo.setCorreo(correo);
+            usuarioNuevo.setIdUsuario(idusr);
+            
+            usuarioService.actualizarUsuario(usuarioNuevo);
+
+            respuesta.setEstatus("ok");
+            respuesta.setMensaje("Se actualizo correctamente el usuario");
+            
+        } catch (ServiceException se) {
+        	LOG.error("Error al actualizar usuario: " + se.getMessage() + " " + se.toString());
+            respuesta.setEstatus("error");
+            respuesta.setMensaje(se.getMessage());
+        } catch (Exception e) {
+        	LOG.error("Error al actualizar usuario: " + e.getMessage() + " " + e.toString());
+            respuesta.setEstatus("error");
+            respuesta.setMensaje("Error al actualizar usuario");
+        }
+
+        return respuesta;
+    }
+	
+	
+    
+    @RequestMapping(value = "/borrarUsuario.json", method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody
+    RespuestaJsonBean borrarUsuario(final HttpServletRequest request, final Map<String, Object> model) {
+    	LOG.info("Controller para borrar usuario");
+        RespuestaJsonBean respuesta = new RespuestaJsonBean();
+
+        try {
+
+            JSONObject jsonObj = requestParamsToJSON(request);
+
+            //UsuarioBean usuario = (UsuarioBean) request.getSession(false).getAttribute("usuario");
+
+            String idUsuario = jsonObj.getString("idUsuario");
+            int idusr=0;
+            if(idUsuario != null){
+            	idusr = Integer.parseInt(idUsuario);
+            }
+            
+            UsuarioBean usuarioNuevo = new UsuarioBean();
+            usuarioNuevo.setIdUsuario(idusr);
+            
+            usuarioService.borrarUsuario(usuarioNuevo);
+
+            respuesta.setEstatus("ok");
+            respuesta.setMensaje("Se borro correctamente el usuario");
+            
+        } catch (ServiceException se) {
+        	LOG.error("Error al borrar usuario: " + se.getMessage() + " " + se.toString());
+            respuesta.setEstatus("error");
+            respuesta.setMensaje(se.getMessage());
+        } catch (Exception e) {
+        	LOG.error("Error al borrar usuario: " + e.getMessage() + " " + e.toString());
+            respuesta.setEstatus("error");
+            respuesta.setMensaje("Error al borrar usuario");
+        }
+
+        return respuesta;
+    }    
 	
 }

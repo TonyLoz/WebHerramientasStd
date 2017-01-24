@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.santander.commons.exceptions.DAOException;
 import com.santander.commons.exceptions.ServiceException;
-import com.santander.tools.bean.PerfilBean;
+
 import com.santander.tools.bean.UsuarioBean;
 import com.santander.tools.dao.UsuarioDao;
 
@@ -70,7 +70,44 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new ServiceException("No se pudo registrar usuario:"+ex.getMessage());
         }
 
-    }	
+    }
+    
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, rollbackFor = {ServiceException.class})
+    public void actualizarUsuario(UsuarioBean usuario) throws ServiceException {
+
+        try {
+
+            usuarioDao.actualizarUsuario(usuario);
+
+        } catch (DAOException ex) {
+            log.error("No se pudo actualizar usuario: " + ex.getMessage());
+            throw new ServiceException("No se pudo actualizar usuario:"+ex.getMessage());
+        }
+
+    }	    
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, rollbackFor = {ServiceException.class})
+    public void borrarUsuario(UsuarioBean usuario) throws ServiceException {
+
+        try {
+
+            usuarioDao.borrarUsuario(usuario);
+
+        } catch (DAOException ex) {
+            log.error("No se pudo borrar usuario: " + ex.getMessage());
+            throw new ServiceException("No se pudo borrar usuario:"+ex.getMessage());
+        }
+
+    }    
 	
 	@Override
 	public List<UsuarioBean> getUsuarios() throws ServiceException{

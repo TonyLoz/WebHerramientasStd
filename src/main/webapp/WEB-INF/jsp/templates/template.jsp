@@ -51,6 +51,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/jquery.scrollTo-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/jquery.localscroll-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/jquery.parallax-1.1.3.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootbox.min.js"></script> 
         
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootstrap-select-1.11.2/js/bootstrap-select.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>

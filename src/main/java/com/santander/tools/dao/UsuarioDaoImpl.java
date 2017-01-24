@@ -37,11 +37,16 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	private static final Logger LOGGER = Logger.getLogger("defaultLogger");
 
-	private static final String QUERY_USUARIO = "SELECT u.NOMBRE," + "u.PASSWORD," + "u.EMAIL," + "u.ID_PERFIL, " + "p.PERFIL FROM tb_usuario u, tb_perfil p WHERE p.ID_PERFIL=u.ID_PERFIL "
+	private static final String QUERY_USUARIO = "SELECT u.NOMBRE,u.PASSWORD,u.EMAIL,u.ID_PERFIL, p.PERFIL, u.ID_USUARIO FROM tb_usuario u, tb_perfil p WHERE p.ID_PERFIL=u.ID_PERFIL "
 			+ " AND EMAIL = :email";
 	
-	private static final String QUERY_USUARIOS = "SELECT u.NOMBRE," + "u.PASSWORD," + "u.EMAIL," + "u.ID_PERFIL," + "p.PERFIL FROM tb_usuario u, tb_perfil p WHERE p.ID_PERFIL=u.ID_PERFIL "
+	private static final String QUERY_USUARIOS = "SELECT u.NOMBRE,u.PASSWORD,u.EMAIL,u.ID_PERFIL,p.PERFIL, u.ID_USUARIO FROM tb_usuario u, tb_perfil p WHERE p.ID_PERFIL=u.ID_PERFIL "
 			+ " ORDER BY NOMBRE";
+	
+	private static final String ACTUALIZAR_USUARIO = "UPDATE tb_usuario SET NOMBRE=:nombre, EMAIL=:email WHERE ID_USUARIO=:id";
+	
+	private static final String BORRAR_USUARIO = "DELETE FROM tb_usuario WHERE ID_USUARIO=:id";
+	
 	
 	  private static final String INSERTAR_USUARIO
       = "INSERT INTO tb_usuario "
@@ -78,6 +83,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			
 			usuario.setIdPerfil(rs.getInt(4));
 			usuario.setPerfil(perfil);
+			
+			usuario.setIdUsuario(rs.getInt(6));
 			return usuario;
 		}
 	}
@@ -159,12 +166,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}	
 	
     @Override
-    public Long registrarUsuario(UsuarioBean Usuario) throws DAOException {
+    public Long registrarUsuario(UsuarioBean usuario) throws DAOException {
 
         //Insertamos el registro en caso de que no exista
         MapSqlParameterSource bindValues = new MapSqlParameterSource();
         
-        agregarParametros(Usuario, bindValues);
+        agregarParametros(usuario, bindValues);
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -192,6 +199,43 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     }
     
+    
+    @Override
+    public void actualizarUsuario(UsuarioBean usuario) throws DAOException {
+
+        //Insertamos el registro en caso de que no exista
+        MapSqlParameterSource bindValues = new MapSqlParameterSource();
+        
+        bindValues.addValue("nombre", usuario.getNombre());
+        bindValues.addValue("email", usuario.getCorreo());
+        bindValues.addValue("id", usuario.getIdUsuario());
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        LOGGER.debug(String.format("Ejecutando Query: %s", ACTUALIZAR_USUARIO));
+
+        this.jdbcTemplate.update(ACTUALIZAR_USUARIO, bindValues, keyHolder);
+
+        //return Long.parseLong(keyHolder.getKey().toString());
+    }    
+    
+    
+    @Override
+    public void borrarUsuario(UsuarioBean usuario) throws DAOException {
+
+        //Insertamos el registro en caso de que no exista
+        MapSqlParameterSource bindValues = new MapSqlParameterSource();
+        
+        bindValues.addValue("id", usuario.getIdUsuario());
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        LOGGER.debug(String.format("Ejecutando Query: %s", BORRAR_USUARIO));
+
+        this.jdbcTemplate.update(BORRAR_USUARIO, bindValues, keyHolder);
+
+        //return Long.parseLong(keyHolder.getKey().toString());
+    }     
     
 
 }

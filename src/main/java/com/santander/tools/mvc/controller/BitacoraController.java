@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.santander.commons.exceptions.ServiceException;
 import com.santander.tools.bean.BitacoraBean;
-import com.santander.tools.bean.PerfilBean;
 import com.santander.tools.bean.RespuestaJsonBean;
-import com.santander.tools.bean.UsuarioBean;
 import com.santander.tools.service.BitacoraService;
-import com.santander.tools.service.PerfilService;
-import com.santander.tools.service.UsuarioService;
 
 
 /**
- * Clase que controla todas las peticiones relacionadas alta de usuarios
+ * Clase que controla todas las peticiones relacionadas bitacora
  * 
  * @author OMartinez (1.0.0)
  * @version 1.0.0, 03/08/2016

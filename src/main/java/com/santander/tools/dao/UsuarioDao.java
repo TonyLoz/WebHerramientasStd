@@ -15,4 +15,8 @@ public interface UsuarioDao {
 	public Long registrarUsuario(UsuarioBean Usuario) throws DAOException;
 	
 	public List<UsuarioBean> getUsuarios() throws DAOException;
+	
+	public void actualizarUsuario(UsuarioBean usuario) throws DAOException;
+	
+	public void borrarUsuario(UsuarioBean usuario) throws DAOException;
 }

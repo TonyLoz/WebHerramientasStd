@@ -9,7 +9,7 @@
 				<div class="block col-sm-12">
 					<ul class="breadcrumb">
 						<li><a href="#" class="pathway">Home</a></li>
-						<li><span>Bit&aacute;cora de Operaciones</span></li>
+						<li><span>Bitacora</span></li>
 					</ul>
 				</div>
 			</div>
@@ -28,16 +28,14 @@
 					<div class="content-area" id="primary">
 						<div role="main" class="site-content" id="content">
 
-							<div id="panel-bitacora-admin" style="display: none;">
-								<table id="table-bitacora"
-									class="display table table-striped table-hover table-condensed">
+							<div id="panel-bitacora-admin">
+								<table id="table-bitacora" class="display table table-striped table-hover table-condensed" style="width:100%" >
 									<thead>
 										<tr>
 											<th>Fecha</th>
 											<th>Usuario</th>
-											<th>Operaci&oacute;n</th>
-											<th>Descripci&oacute;n</th>
-											<th></th>
+											<th>Operacion</th>
+											<th>Comentarios</th>
 										</tr>
 									</thead>
 								</table>
@@ -81,5 +79,55 @@
 
 
 
+       <!-- Modal tracking-->
+        <div id="modal-update-user" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Actualizar Usuario <span id="headerProjectTrackingModal"></span> </h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <input type="hidden" id="hdnIdUser" />
+                        
+
+
+						<form id="actualizar-usuario-form" class="contact-form" data-toggle="validator">
+							<p class="contact-form-name">
+								<label for="upd-name">Nombre <span class="required">*</span></label>
+								<input type="text" aria-required="true" size="30" value=""
+									name="upd-name" id="upd-name" class="form-control"
+									placeholder="Nombre">
+							</p>
+							<p class="contact-form-email">
+								<label for="upd-email">Correo <span class="required">*</span></label>
+								<input type="email" aria-required="true" size="30" value=""
+									name="upd-email" id="upd-email" class="form-control"
+									placeholder="Correo electronico">
+							</p>
+
+						</form>
+
+
+ 
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary theme_btn" id='btnUpdUser' title='Actualizar usuario'>Actualizar&nbsp;<i class="fa fa-refresh"></i></button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
 </div>
 <!-- EOF #box_wrap -->
+
+
+
