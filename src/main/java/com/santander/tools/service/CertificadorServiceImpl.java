@@ -100,7 +100,7 @@ public class CertificadorServiceImpl implements CertificadorService {
 			
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
-			log.equals(e.getMessage());
+			log.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
 		return ls;

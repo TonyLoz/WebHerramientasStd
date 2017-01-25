@@ -22,6 +22,11 @@
 		<div class="container">
 
 			<div class="row">
+				<div class="col-sm-12 text-center">
+					<h2 class="block-header">Bitacora</h2>
+				</div>
+			</div>
+			<div class="row">
 
 				<div class="col-sm-12">
 					<div class="text-center"></div>

@@ -38,6 +38,9 @@
 								</div>
 							</div>
 							<div class="row">
+								<button id="btnProcessFile" type="button" class="btn btn-warning">Procesar Archivos</button>
+							</div>
+							<div class="row">
 								<div class="col-sm-12">
 								
 									<div id="tabla-archivos-container"></div>

@@ -50,7 +50,7 @@ public class PerfilServiceImpl implements PerfilService {
 			
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
-			log.equals(e.getMessage());
+			log.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
 		return pb;
@@ -69,7 +69,7 @@ public class PerfilServiceImpl implements PerfilService {
 			
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
-			log.equals(e.getMessage());
+			log.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
 		return lp;

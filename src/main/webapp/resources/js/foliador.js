@@ -29,6 +29,83 @@ function handler() {
 	});
 
 	$('#fColor').colorpicker();
+	
+	$( "#btnProcessFile" ).click(function() {
+		procesarArchivos();
+	});	
+	
+	
+}
+
+
+function procesarArchivos() {
+
+	var listaOpcionesArchivo = [];
+
+	var arrayLength = tablaArchivos.getData().length;
+	for (var i = 0; i < arrayLength; i++) {
+
+		var item = tablaArchivos.getData()[i];
+		
+		var cole = item[2];
+		
+		if(cole === null){
+			cole = "";
+		}
+		
+		var jsonItem = {
+			archivo : item[0],
+			foliar : item[1],
+			colectivo : cole,
+			certFinal : item[3],
+			certTodo : item[4]
+		}
+
+		listaOpcionesArchivo.push(jsonItem);
+
+	}
+	
+
+	$.ajax({
+		url : "procesarArchivos.json",
+		type : "POST",
+		dataType : "json",
+		async : false,
+		beforeSend : function() {
+			Mensajes.mensajeCargando("Por favor espere...", {
+				autoClose : false
+			});
+		},
+		data:{
+			listaArchivos:listaOpcionesArchivo
+		},		
+		success : function(respuestaJson) {
+			// ocultarMensajes();
+			if (respuestaJson.estatus === "ok") {
+
+				listaArchivos = respuestaJson.lista;
+
+				
+				descargarArchivos();
+
+				Mensajes.mensajeOk(respuestaJson.mensaje);
+			} else {
+				if (respuestaJson.estatus === "preventivo") {
+					Mensajes.mensajeAlerta(respuestaJson.mensaje);
+				} else {
+					Mensajes.mensajeAlerta(respuestaJson.mensaje);
+				}
+			}
+
+		},
+		error : function() {
+			Mensajes.borrarMensajes();
+			Mensajes
+					.mensajeError("Ocurri&oacute; un error al procesar archivos");
+		}
+	});
+	
+
 }
 
 function consultarArchivos() {
@@ -40,32 +117,59 @@ function consultarArchivos() {
 		dataType : "json",
 		async : false,
 		beforeSend : function() {
-			// mostrarMensajeCargando("Por favor espere, cargando información");
+			Mensajes.mensajeCargando("Por favor espere...", {
+				autoClose : false
+			});
 		},
 		success : function(respuestaJson) {
-			// ocultarMensajes();
+			Mensajes.borrarMensajes();
 			if (respuestaJson.estatus === "ok") {
 
 				listaArchivos = respuestaJson.lista;
 
+				Mensajes.mensajeOk(respuestaJson.mensaje);
+				
 				initTable(listaArchivos);
-
-				// ocultarMensajes();
+				
+				
 			} else {
 				if (respuestaJson.estatus === "preventivo") {
-					// mostrarMensajePreventivo(respuestaJson.mensaje);
+					Mensajes.mensajeAlerta(respuestaJson.mensaje);
 				} else {
-					// mostrarMensajeError(respuestaJson.mensaje);
+					Mensajes.mensajeAlerta(respuestaJson.mensaje);
 				}
 			}
 
 		},
 		error : function() {
-			// ocultarMensajes();
-			// mostrarMensajeError("Ocurri&oacute; un error al consultar
-			// Ejecutivos");
+			Mensajes.borrarMensajes();
+			Mensajes
+					.mensajeError("Ocurri&oacute; un error al consultar archivos");
 		}
 	});
+}
+
+
+function descargarArchivos(){
+	
+    bootbox.confirm({
+        message: "Archivos procesados correctamente",
+        buttons: {
+            confirm: {
+                label: 'Descargar',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+        	   window.location.href="descargarArchivos.htm";
+            
+        }
+    });	
+	
 }
 
 function initTable(listaArchivos) {
@@ -81,10 +185,10 @@ function initTable(listaArchivos) {
 		data : "indexColectivo",
 		type : 'numeric',
 		format : '0'
-	}, {
+	}, /*{
 		data : "flagVistaPrevia",
 		type : 'checkbox'
-	}, {
+	},*/ {
 		data : "flagCertFinal",
 		type : 'checkbox'
 	}, {
@@ -94,7 +198,7 @@ function initTable(listaArchivos) {
 
 	];
 
-	var headers = [ "Archivo", "Foliar", "Colectivo", "Vista Previa",
+	var headers = [ "Archivo", "Foliar", "Colectivo", /*"Vista Previa",*/
 			"Certificar Final", "Certificar Todo" ];
 
 	var config = {
@@ -190,7 +294,7 @@ function initTable(listaArchivos) {
 
 		}
 
-		for (i = 0, len = table2.length; i < len; i++) {
+		for (i = 0, len = tablaArchivos.length; i < len; i++) {
 		  var tableInstance = table[i];
 		  var isMaster = !!findAncestor(tableInstance, 'ht_master');
 		  Handsontable.Dom.addClass(tableInstance, 'table');

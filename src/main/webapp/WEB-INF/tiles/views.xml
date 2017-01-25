@@ -35,5 +35,8 @@
         <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/archivos.jsp" />
     </definition>          
     
+    <definition name="descargarArchivos" extends="template" >
+        <put-attribute name="areaTrabajo" value="/WEB-INF/jsp/webApp/descargarArchivos.jsp" />
+    </definition>     
 
 </tiles-definitions>

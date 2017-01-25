@@ -3,8 +3,14 @@
  */
 package com.santander.tools.mvc.controller;
 
-import java.io.FileOutputStream;
+import java.io.File;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -47,11 +53,12 @@ public class ArchivosController {
 	private String[] archivosPermitidos = { "PDF", "pdf", "tiff", "TIFF", "tif", "TIF" };
 
 	@RequestMapping(value = "/archivos.htm", method = RequestMethod.GET)
-	public String mostrarUsuarios() {
+	public String cargarArchivos() {
 		LOG.debug("Controller para redirigir a la pantalla de uploading de archivos");
 		files2 = new ArrayList<FileMetaBean>();
 		return "archivos";
 	}
+	
 
 	/***************************************************
 	 * URL: /rest/controller/upload upload(): receives files
@@ -87,8 +94,9 @@ public class ArchivosController {
 
 						// copy file to local disk (make sure the path "e.g.
 						// D:/temp/files" exists)
-						FileCopyUtils.copy(mpf.getBytes(),
-								new FileOutputStream("/temp/files/" + mpf.getOriginalFilename()));
+						
+						//FileCopyUtils.copy(mpf.getBytes(),
+							//	new FileOutputStream("/temp/files/" + mpf.getOriginalFilename()));
 
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -197,5 +205,8 @@ public class ArchivosController {
 		return "redirect:/foliador.htm";
 
 	}
+	
+	
+	
 
 }

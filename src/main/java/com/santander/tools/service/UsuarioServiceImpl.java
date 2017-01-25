@@ -45,7 +45,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
-			log.equals(e.getMessage());
+			log.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
 		return usr1;
@@ -125,7 +125,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			
 		} catch (DAOException e) {
 			// TODO Auto-generated catch block
-			log.equals(e.getMessage());
+			log.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
 		return ls;

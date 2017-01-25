@@ -3,6 +3,8 @@
  */
 package com.santander.tools.bean;
 
+
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
@@ -11,15 +13,17 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties({ "bytes" })
 public class FileMetaBean {
-	private String fileName;
-	private String fileSize;
-	private String fileType;
+	private String fileName="";
+	private String fileSize="";
+	private String fileType="";
 
 	private Boolean flagFoliar = false;
 	private Boolean flagVistaPrevia = false;
 	private Boolean flagCertFinal = false;
 	private Boolean flagCertTodo = false;
 	private Integer indexColectivo = null;
+
+	private byte[] bytes;
 
 	/**
 	 * @return the flagFoliar
@@ -96,7 +100,6 @@ public class FileMetaBean {
 		this.indexColectivo = indexColectivo;
 	}
 
-	private byte[] bytes;
 
 	public String getFileName() {
 		return fileName;
