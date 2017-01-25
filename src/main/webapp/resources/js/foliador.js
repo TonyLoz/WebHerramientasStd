@@ -85,10 +85,11 @@ function procesarArchivos() {
 
 				listaArchivos = respuestaJson.lista;
 
+				Mensajes.borrarMensajes();
 				
 				descargarArchivos();
 
-				Mensajes.mensajeOk(respuestaJson.mensaje);
+				//Mensajes.mensajeOk(respuestaJson.mensaje);
 			} else {
 				if (respuestaJson.estatus === "preventivo") {
 					Mensajes.mensajeAlerta(respuestaJson.mensaje);

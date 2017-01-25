@@ -137,6 +137,7 @@ public class FoliadorController extends BaseMultiActionController {
         	for(FileMetaBean fmb : archivos){
         		
                 String outputFile = fmb.getFileName().replace(".pdf", "") + "_foliado.pdf";
+                outputFile= outputFile.replace(" ", "");
                 
                 InputStream is = paginadorService.paginarDocumento(fmb.getBytes(), outputFile);
                 
