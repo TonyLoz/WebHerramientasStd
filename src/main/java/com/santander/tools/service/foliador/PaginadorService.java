@@ -10,5 +10,5 @@ public interface PaginadorService {
 	
 	
 	
-	public InputStream paginarDocumento(byte[] inputFile, String outputFile) throws ServiceException;
+	public byte[] paginarDocumento(byte[] inputFile, String outputFile) throws ServiceException;
 }

@@ -26,6 +26,7 @@
 			<map>
 				<entry key="htm" value="text/html" />
 				<entry key="json" value="application/json" />
+				<!--entry key="pdf" value="application/pdf" /-->
 				<entry key="cfg" value="text/html" />
 			</map>
 		</property>
@@ -40,6 +41,7 @@
 			<list>
 				<ref bean="tilesViewResolver" />
 				<ref bean="internalViewResolver" />
+				<!-- ref bean="pdfViewResolver" /-->
 			</list>
 
 		</property>
@@ -52,10 +54,11 @@
 		</property>
 	</bean>
 
-	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
 		<property name="order" value="0" />
 	</bean>
-	
+
 	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
 		id="tilesConfigurer">
 		<property name="definitions">
@@ -74,7 +77,17 @@
 		<property name="order" value="1" />
 	</bean>
 
-    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<!--bean id="pdfViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="order" value="2" />
+		<property name="prefix" value="/download/" />
+		<property name="suffix" value=".pdf" />
+	</bean-->
 
 
 </beans>

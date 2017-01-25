@@ -139,11 +139,9 @@ public class FoliadorController extends BaseMultiActionController {
                 String outputFile = fmb.getFileName().replace(".pdf", "") + "_foliado.pdf";
                 outputFile= outputFile.replace(" ", "");
                 
-                InputStream is = paginadorService.paginarDocumento(fmb.getBytes(), outputFile);
+                byte[] bytes = paginadorService.paginarDocumento(fmb.getBytes(), outputFile);
                 
                 FileMetaBean fmbp = new FileMetaBean();
-                
-                byte[] bytes = IOUtils.toByteArray(is);
                 
                 fmbp.setBytes(bytes);
                 fmbp.setFileName(outputFile);
@@ -166,11 +164,7 @@ public class FoliadorController extends BaseMultiActionController {
         	LOG.error("Error al obtener Perfiles: " + se.getMessage() + " " + se.toString());
             respuesta.setEstatus("error");
             respuesta.setMensaje(se.getMessage());
-        } catch (IOException se) {
-        	LOG.error("Error al obtener Perfiles: " + se.getMessage() + " " + se.toString());
-            respuesta.setEstatus("error");
-            respuesta.setMensaje(se.getMessage());
-        }
+        } 
 
         return respuesta;
 

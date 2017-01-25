@@ -3,40 +3,30 @@
  */
 package com.santander.tools.mvc.controller;
 
-import java.io.File;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 
-import com.santander.commons.exceptions.ServiceException;
-import com.santander.tools.bean.BitacoraBean;
-import com.santander.tools.bean.CertificadorBean;
 import com.santander.tools.bean.FileMetaBean;
 import com.santander.tools.bean.RespuestaJsonBean;
 
@@ -46,7 +36,7 @@ import com.santander.tools.bean.RespuestaJsonBean;
  */
 @Controller
 @RequestMapping
-public class DescargarArchivosController {
+public class DescargarArchivosController extends BaseMultiActionController {
 
 	private static final Logger LOG = Logger.getLogger(DescargarArchivosController.class);
 		
@@ -54,6 +44,7 @@ public class DescargarArchivosController {
 	private List<String> nombresProcesados = new ArrayList<String>();
 	
 	private FileMetaBean fileMeta = null;
+	
 	
 
 
@@ -106,56 +97,76 @@ public class DescargarArchivosController {
     }	
 	
 	
+  /*  @RequestMapping(value = "download.do", method = RequestMethod.GET)
+    public void getFile(final HttpServletRequest request,
+            HttpServletResponse response) {
+        try {
+        	
+        	JSONObject o =  requestParamsToJSON(request);
+        	
+        	String fileName = o.getString("nombre");
+        	
+            DefaultResourceLoader loader = new DefaultResourceLoader();
+            InputStream is = loader.getResource("classpath:META-INF/resources/Accepted.pdf").getInputStream();
+            IOUtils.copy(is, response.getOutputStream());
+            response.setHeader("Content-Disposition", "attachment; filename=Accepted.pdf");
+            response.flushBuffer();
+        } catch (IOException ex) {
+            throw new RuntimeException("IOError writing file to output stream");
+        }
+    }*/	
 	
+    
+
+    
 	/*
      * Download a file from 
      *   - inside project, located in resources folder.
      *   - outside project, located in File system somewhere. 
      */
-    @RequestMapping(value="/download/{nameFile}", method = RequestMethod.GET)
-    public void downloadFile(HttpServletResponse response, @PathVariable("type") String nameFile) throws IOException {
-     
+    @RequestMapping(value = "download.do", method = RequestMethod.GET, produces = "application/pdf")
+    public void getFile(final HttpServletRequest request,
+            HttpServletResponse response) throws IOException{ 
         //File file = null;
         
+    	JSONObject o =  requestParamsToJSON(request);
+    	String fileName = o.getString("nombre");    	
+    	
         FileMetaBean selected = new FileMetaBean();
         
         for (FileMetaBean fmb : archivosProcesados){
         	
-        	if(fmb.getFileName().equals(nameFile)){
+        	if(fmb.getFileName().equals(fileName)){
         		selected = fmb;
         		break;
         	}
         	
         }
         
-         
-        String mimeType= URLConnection.guessContentTypeFromName(selected.getFileName());
-        if(mimeType==null){
-            System.out.println("mimetype is not detectable, will take default");
-            mimeType = "application/octet-stream";
-        }
-         
-        System.out.println("mimetype : "+mimeType);
-         
-        response.setContentType(mimeType);
-         
-        /* "Content-Disposition : inline" will show viewable types [like images/text/pdf/anything viewable by browser] right on browser 
-            while others(zip e.g) will be directly downloaded [may provide save as popup, based on your browser setting.]*/
-        response.setHeader("Content-Disposition", String.format("inline; filename=\"" + selected.getFileName() +"\""));
- 
-         
-        /* "Content-Disposition : attachment" will be directly download, may provide save as popup, based on your browser setting*/
-        //response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", file.getName()));
-         
-        response.setContentLength((int)selected.getBytes().length);
         
         ByteArrayInputStream bis = new ByteArrayInputStream(selected.getBytes());
         
         InputStream inputStream = new BufferedInputStream(bis);
+        
+        String mimeType= "application/pdf";
+        
+        response.setContentType(mimeType);
+        
+        response.setHeader("Content-Disposition", "attachment; filename=\""+selected.getFileName()+"\""); 
+        
+        response.setContentLength(selected.getBytes().length);
+ 
  
         //Copy bytes from source to destination(outputstream in this example), closes both streams.
         FileCopyUtils.copy(inputStream, response.getOutputStream());
+        
+        //org.apache.commons.io.IOUtils.copy(inputStream, response.getOutputStream());
+        
+        response.flushBuffer();
+        
     }	
+    
+	
 	
 
 }

@@ -3,6 +3,7 @@
  */
 package com.santander.tools.service.foliador;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,31 +30,35 @@ public class PaginadorServiceImpl implements PaginadorService {
 	private static Logger log = Logger.getLogger(PaginadorServiceImpl.class);
 	
 	@Override
-	public InputStream paginarDocumento(byte[] inputFile, String outputFile) throws ServiceException {
+	public byte[] paginarDocumento(byte[] inputFile, String outputFile) throws ServiceException {
 		// the document
 		PDDocument doc = null;
-		InputStream stream = null;
+		byte[] stream = null;
 
 		try {
 			//System.out.println(inputFile);
 			doc = PDDocument.load(inputFile);
-
+			
+			int num=1;
 			for (PDPage page : doc.getPages()) {
 				PDFont font = PDType1Font.HELVETICA;
 				// page.getContents().getStream();
 				try (PDPageContentStream contentStream = new PDPageContentStream(doc, page, true, true)) {
 					// page.getContents().getStream();
 					contentStream.beginText();
-					contentStream.setFont(font, 12);
-					contentStream.moveTextPositionByAmount(100, 100);
-					contentStream.drawString("Hello");
+					contentStream.setFont(font, 24);
+					contentStream.moveTextPositionByAmount(400, 100);
+					contentStream.drawString("Pagina Numero: " + num);
 					contentStream.endText();
 				}
+				
+				num++;
 			}
 
 			// doc.save(outputFile);
-			PDStream ps = new PDStream(doc);
-			stream = ps.createInputStream();
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			doc.save(byteArrayOutputStream);
+		    stream = byteArrayOutputStream.toByteArray();
 		} catch (Exception e) {
 
 			// TODO Auto-generated catch block

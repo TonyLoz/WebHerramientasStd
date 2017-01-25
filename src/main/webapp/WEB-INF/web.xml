@@ -82,7 +82,7 @@ version="3.0">
         <url-pattern>*.json</url-pattern>
         <url-pattern>*.cfg</url-pattern>
         <url-pattern>/restfiles/*</url-pattern>
-        <url-pattern>/download/*</url-pattern>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
